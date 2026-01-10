@@ -1,35 +1,30 @@
 package ecommerce;
 
-import ecommerce.payment.CreditCardPayment;
-import ecommerce.payment.PayPalPayment;
-import ecommerce.processor.MockBankProcessor;
-import ecommerce.processor.PayPalProcessor;
-import ecommerce.processor.PaymentResult;
-import ecommerce.processor.StripeProcessor;
+import ecommerce.controller.CartController;
+import ecommerce.controller.CheckoutController;
+import ecommerce.model.Product;
+import ecommerce.model.ShoppingCart;
+import ecommerce.view.ConsoleView;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        BigDecimal amount = new BigDecimal("149.99");
+        // In-memory catalog (simple + fine for this project)
+        List<Product> catalog = List.of(
+                new Product("P100", "Mechanical Keyboard", new BigDecimal("129.99")),
+                new Product("P200", "Wireless Mouse", new BigDecimal("39.99")),
+                new Product("P300", "USB-C Hub", new BigDecimal("24.50")),
+                new Product("P400", "Laptop Stand", new BigDecimal("44.00"))
+        );
 
-        // Same payment type (CreditCard) can use different processors:
-        var ccViaStripe = new CreditCardPayment(new StripeProcessor(), "1234");
-        PaymentResult r1 = ccViaStripe.pay(amount);
-        System.out.println("1) " + r1);
+        ShoppingCart cart = new ShoppingCart();
+        CartController cartController = new CartController(cart, catalog);
 
-        var ccViaBank = new CreditCardPayment(new MockBankProcessor(), "1234");
-        PaymentResult r2 = ccViaBank.pay(amount);
-        System.out.println("2) " + r2);
+        BigDecimal taxRate = new BigDecimal("0.13"); // Ontario HST (example)
+        CheckoutController checkoutController = new CheckoutController(cart, taxRate);
 
-        // PayPal payment using PayPal processor:
-        var paypal = new PayPalPayment(new PayPalProcessor(), "manoj@example.com");
-        PaymentResult r3 = paypal.pay(amount);
-        System.out.println("3) " + r3);
-
-        // Demonstrate failure:
-        var bigCharge = new CreditCardPayment(new MockBankProcessor(), "9876");
-        PaymentResult r4 = bigCharge.pay(new BigDecimal("5000.00"));
-        System.out.println("4) " + r4);
+        new ConsoleView(cartController, checkoutController).start();
     }
 }
