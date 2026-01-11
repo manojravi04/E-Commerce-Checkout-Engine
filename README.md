@@ -47,3 +47,21 @@ Payment payment = new CreditCardPayment(new StripeProcessor(), "1234");
 payment.pay(totalAmount)
 
 The same CreditCardPayment can be processed via Stripe, PayPal,Bank Processor without changing business logic.
+
+How to run: 
+Prerequisites: Java 17+, PowerShell / Terminal
+Compile and Run (Windows)
+mkdir bin
+javac -d bin (Get-ChildItem -Recurse src -Filter *.java | ForEach-Object { $_.FullName })
+java -cp bin ecommerce.Main
+
+Sample output:
+
+=== E-Commerce Checkout Engine ===
+1) List products
+2) Add to cart
+3) View cart
+4) Update quantity
+5) Remove from cart
+6) Checkout
+0) Exit
