@@ -1,6 +1,6 @@
  E-Commerce Checkout Engine (Java)
 
-A modular Java-based e-commerce checkout system designed using **MVC architecture** and the **Bridge design pattern** to support multiple payment methods and payment processors.
+A modular Java-based e-commerce checkout system designed using MVC architecture and the Bridge design pattern to support multiple payment methods and payment processors.
 
 This project simulates the core checkout workflow used in real-world e-commerce systems, including cart management, tax calculation, payment processing, and order generation.
 
@@ -27,12 +27,12 @@ Architecture Overview:
 
 This project follows a layered architecture:
 ecommerce
-├── model // Core domain objects (Product, Cart, Order)
-├── controller // Business logic and workflow orchestration
-├── payment // Payment abstractions (Bridge pattern)
-├── processor // Payment processor implementations (Bridge pattern)
-├── view // Console-based user interface
-└── Main.java // Application entry point
+ model // Core domain objects (Product, Cart, Order)
+ controller // Business logic and workflow orchestration
+ payment // Payment abstractions (Bridge pattern)
+ processor // Payment processor implementations (Bridge pattern)
+ view // Console-based user interface
+ Main.java // Application entry point
 
 Design Patterns Used
 - MVC (Model–View–Controller)** for clean separation of responsibilities
