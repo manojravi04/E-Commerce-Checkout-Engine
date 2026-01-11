@@ -35,7 +35,7 @@ ecommerce
  Main.java // Application entry point
 
 Design Patterns Used
-- MVC (Model–View–Controller)** for clean separation of responsibilities
+- MVC (Model–View–Controller) for clean separation of responsibilities
 -  Bridge Pattern to allow payment methods and processors to vary independently
 
 Bridge Pattern Example:
