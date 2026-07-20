@@ -1,4 +1,4 @@
- E-Commerce Checkout Engine (Java)
+BridgePay E-Commerce Checkout Engine (Java)
 
 A modular Java-based e-commerce checkout system designed using MVC architecture and the Bridge design pattern to support multiple payment methods and payment processors.
 
